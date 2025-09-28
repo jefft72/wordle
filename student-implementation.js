@@ -105,12 +105,13 @@ function submitGuess() {
         results.push(checkLetter(guess[i], i, target, guess));
     }
 
-    for (let i = 0; i < WORD_LENGTH; i++) {
-        const tile = getTile(currentRow, i);
-        setTileState(tile, results[i]);
-    }
-
     flipRowTiles(currentRow, results, () => {
+
+        for (let i = 0; i < WORD_LENGTH; i++) {
+            const tile = getTile(currentRow, i);
+            setTileState(tile, results[i]);
+        }
+
         updateKeyboardColors(currentGuess, results);
         processRowReveal(currentRow, results);
 
